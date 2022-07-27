@@ -1,0 +1,10 @@
+form {
+    div:last-child {
+        display: flex;
+        justify-content: center;
+        button {
+            margin-top: 2rem;
+            padding: 0.8rem;
+        }
+    }
+}
