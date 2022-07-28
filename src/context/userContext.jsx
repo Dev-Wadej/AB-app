@@ -7,6 +7,8 @@ export const UserContext = createContext({
   userCreateDetails: {},
   setUserCreateDetails: () => {},
   clearFormFields: () => {},
+  userFirebase: {},
+  setUserFirebase: () => {},
 });
 const defaultFormFields = {
   username: '',
@@ -17,6 +19,7 @@ const defaultFormFields = {
 };
 export const UserProvider = ({ children }) => {
   const [userDetails, setUserDetails] = useState({});
+  const [userFirebase, setUserFirebase] = useState({});
   const [userCreateDetails, setUserCreateDetails] =
     useState(defaultFormFields);
 
@@ -32,6 +35,8 @@ export const UserProvider = ({ children }) => {
     userCreateDetails,
     setUserCreateDetails,
     clearFormFields,
+    userFirebase,
+    setUserFirebase,
   };
   return (
     <UserContext.Provider value={value}>

@@ -11,7 +11,6 @@ import {
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { SignInAuthUserWithEmailAndPassword } from '../../firebase/firebase';
-import { async } from '@firebase/util';
 
 const Signin = () => {
   const { userDetails, setUserDetails } = useContext(UserContext);

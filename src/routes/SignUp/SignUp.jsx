@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FormInput from '../../components/FormInput/FormInput';
 import { UserContext } from '../../context/userContext';
 import Header from '../../components/Header/Header';
@@ -11,8 +12,13 @@ import {
 } from '../../firebase/firebase';
 
 const SignUp = () => {
-  const { clearFormFields, userCreateDetails, setUserCreateDetails } =
-    useContext(UserContext);
+  const navigate = useNavigate();
+  const {
+    setUserFirebase,
+    clearFormFields,
+    userCreateDetails,
+    setUserCreateDetails,
+  } = useContext(UserContext);
   const { username, email, number, password, cfrmPassword } =
     userCreateDetails;
   const handleChange = (e) => {
@@ -30,10 +36,14 @@ const SignUp = () => {
       return;
     }
     try {
+      navigate('/main/*');
+      setUserFirebase(null);
       const { user } = await createUserAuthWithEmailAndPassword(
         email,
         password
       );
+      setUserFirebase(user);
+
       await createUserAuthDb(user, { displayName: username });
       clearFormFields('signUp');
     } catch (error) {
